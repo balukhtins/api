@@ -1,0 +1,26 @@
+<!--проверка на корректность работы выборки по передаваемым параметрам на сервер через request body-->
+
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript" src="../js/jquery.json.js"></script>
+
+<script type='text/javascript'>
+//сформируем JSON
+var JsonData = {
+  category_id:2,
+  //brand_name:"apple",
+  min:100,
+  max:19999,
+  //color:"0000ff"
+  };
+//отправим JSON
+$.ajax({
+   type: "POST",                 //метод запроса, POST или GET (если опустить, то по умолчанию GET)
+   url: "select.php",            //серверный скрипт принимающий запрос
+   data: $.toJSON(JsonData),	//можно передать переменную с json в одном из параметре запроса
+    success: function(res) {                      //функция выполняется при удачном заверщение
+        console.log($.parseJSON(res).category_id);        //выведем в консоль содержимое test1
+        //alert (res);
+        //console.log($.parseJSON(data).test2.test2_in); //выведем в консоль содержимое test2_in
+    }
+});
+</script>
